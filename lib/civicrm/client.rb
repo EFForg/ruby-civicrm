@@ -26,6 +26,10 @@ module CiviCrm
         end
         opts[:url] = CiviCrm.api_url(path)
         response = execute(opts)
+
+        puts(JSON.dump(params)) if ENV["DEBUG_CIVICRM_REQUEST"]
+        puts(response) if ENV["DEBUG_CIVICRM_RESPONSE"]
+
         body, code = response.body, response.code
 
         CiviCrm::XML.parse(body).tap do |results|
