@@ -27,7 +27,12 @@ module CiviCrm
         opts[:url] = CiviCrm.api_url(path)
         response = execute(opts)
         body, code = response.body, response.code
-        CiviCrm::XML.parse(body)
+
+        CiviCrm::XML.parse(body).tap do |results|
+          Array(results).each do |res|
+            raise Error, res["error_message"] if res["is_error"] == "1"
+          end
+        end
       end
 
       def execute(opts)

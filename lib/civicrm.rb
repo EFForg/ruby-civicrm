@@ -25,6 +25,8 @@ require 'civicrm/errors'
 require 'civicrm/resources/base'
 
 module CiviCrm
+  Error = Class.new(Exception)
+
   @@api_key = nil
   @@site_key = nil
   @@api_base = 'https://www.example.org/path/to/civi/codebase'
