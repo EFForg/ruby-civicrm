@@ -14,7 +14,7 @@ module CiviCrm
     # we will use this method for creating nested resources
     def refresh_from(values)
       values.each do |key, value|
-        @values[key] = value
+        @values[key.to_s] = value
       end
     end
 
