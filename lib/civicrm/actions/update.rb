@@ -1,11 +1,14 @@
 module CiviCrm
   module Actions
     module Update
-      # TODO: this method doesn't work yet
       def update(attrs = {})
-        params = {'entity' => self.class.entity_class_name, 'action' => 'replace', 'id' => id}
-        new_attrs = attributes.merge(attrs)
-        response = CiviCrm::Client.request(:post, params.merge(values: new_attrs))
+        params = {
+          'entity' => self.class.entity_class_name,
+          'action' => 'create',
+          'id' => id
+        }.merge(attributes).merge(attrs)
+
+        response = CiviCrm::Client.request(:post, params)
         refresh_from(response.first.to_hash)
       end
 
