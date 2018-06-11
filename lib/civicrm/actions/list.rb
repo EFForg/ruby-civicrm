@@ -12,6 +12,10 @@ module CiviCrm
           all.count
         end
 
+        def find_by(params={})
+          all(params).first
+        end
+
         def first
           all.first
         end
