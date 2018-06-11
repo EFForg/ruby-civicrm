@@ -44,6 +44,9 @@ module CiviCrm
   class ContributionRecur < BaseResource
     entity :contribution_recur
   end
+  class Country < BaseResource
+    entity :country
+  end
   class CustomField < BaseResource
     entity :custom_field
   end
@@ -119,6 +122,9 @@ module CiviCrm
   class Membership < BaseResource
     entity :membership
   end
+  class MembershipPayment < BaseResource
+    entity :membership_payment
+  end
   class Note < BaseResource
     entity :note
   end
@@ -128,8 +134,14 @@ module CiviCrm
   class Profile < BaseResource
     entity :profile
   end
+  class Relationship < BaseResource
+    entity :relationship
+  end
   class Setting < BaseResource
     entity :setting
+  end
+  class StateProvince < BaseResource
+    entity :state_province
   end
   class Survey < BaseResource
     entity :survey
