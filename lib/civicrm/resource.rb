@@ -1,4 +1,5 @@
-require 'active_model/dirty'
+require 'active_model'
+
 module CiviCrm
   class Resource
     include ActiveModel::Dirty
