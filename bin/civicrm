@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
 irb = RUBY_PLATFORM =~ /(:?mswin|mingw)/ ? 'irb.bat' : 'irb'
 
-libs =  " -r irb/completion"
-libs <<  " -r #{File.dirname(__FILE__) + '/../lib/civicrm'}"
+libs =  " -r irb/completion -rcivicrm"
+
 puts "Loading CiviCrm gem"
+ENV["RUBYLIB"] = 'lib'
 exec "#{irb} #{libs} --simple-prompt"
