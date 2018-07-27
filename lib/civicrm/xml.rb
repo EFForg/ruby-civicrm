@@ -2,7 +2,12 @@ module CiviCrm
   class XML
     class << self
       def parse(text)
-        doc = Nokogiri::XML.parse(text.to_s.gsub("\n", ''))
+        fixed_text = text.to_s.
+                     gsub("\n", "").
+                     gsub(/<\d+><\/\d+>/, "")
+
+        doc = Nokogiri::XML.parse(fixed_text)
+
         results = doc.xpath('//Result')
         results.map do |result|
           hash = {}
