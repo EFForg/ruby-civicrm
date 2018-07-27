@@ -3,14 +3,11 @@ module CiviCrm
     module Find
       module ClassMethods
         def find(id)
-          params = {'entity' => entity_class_name, 'action' => 'getsingle', 'id' => id}
+          params = {'entity' => entity_class_name, 'action' => 'get', 'id' => id}
           response = CiviCrm::Client.request(:get, params)
 
-          if response.first.nil?
+          Resource.build_from(response, params).first or
             raise Error, "Couldn't find #{entity_class_name}##{id}"
-          end
-
-          Resource.build_from(response.first, params)
         end
       end
 
