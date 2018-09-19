@@ -1,11 +1,7 @@
  module CiviCrm::TestResponses
   def test_response(body, code = 200)
     body = CiviCrm::XML.encode(body) if !(body.kind_of? String)
-    m = mock
-    m.instance_variable_set('@data', { body: body, code: code})
-    def m.body; @data[:body]; end
-    def m.code; @data[:code]; end
-    m
+    double(body: body, code: code)
   end
 
   def test_contact(params = {})
