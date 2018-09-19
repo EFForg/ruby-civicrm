@@ -44,6 +44,6 @@ $ bundle exec rspec spec
 * https://docs.civicrm.org/dev/en/latest/api/interfaces/#rest-interface
 * http://drupal.demo.civicrm.org/civicrm/api/explorer
 
-# Acknowledgements
+## Acknowledgements
 
 Created by [Iskander Haziev](https://github.com/gvalmon). Maintained by [EFF](https://www.eff.org/).
