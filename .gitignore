@@ -1,2 +1,4 @@
 /pkg
 .rvmrc
+.byebug_history
+*.gem
