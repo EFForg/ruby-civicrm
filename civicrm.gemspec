@@ -19,8 +19,8 @@ spec = Gem::Specification.new do |s|
   s.add_dependency('nokogiri')
 
   s.add_development_dependency('rake')
-  s.add_development_dependency('rspec')
-  s.add_development_dependency('mocha')
+  s.add_development_dependency('rspec', '~> 3.8')
+  s.add_development_dependency('byebug')
 
   s.files = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- test/*`.split("\n")
