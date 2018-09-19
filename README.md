@@ -41,7 +41,7 @@ $ bundle exec rspec spec
 
 ## Useful links
 
-* http://wiki.civicrm.org/confluence/display/CRMDOC43/REST+interface
+* https://docs.civicrm.org/dev/en/latest/api/interfaces/#rest-interface
 * http://drupal.demo.civicrm.org/civicrm/api/explorer
 
 # Acknowledgements
