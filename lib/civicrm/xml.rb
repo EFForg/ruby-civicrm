@@ -2,13 +2,12 @@ module CiviCrm
   class XML
     class << self
       def parse(text)
-        # CiviCRM <Result>s sometimes contain weird elements
+        # CiviCRM <Result>s sometimes contain invalid elements
         # like <preferred_communication_method><0></0></ ...
-        # that Nokogiri::XML can't hang with. Get rid of them before
-        # parsing.
+        # Get rid of them before parsing.
         fixed_text = text.to_s.
                      gsub("\n", "").
-                     gsub(/<(\w|_)+>\s*<\d+><\/\d+>\s*<\/(\w|_)+>/, "")
+                     gsub(/<\d+>(.*?)<\/\d+>/, "")
 
         doc = Nokogiri::XML.parse(fixed_text)
 
