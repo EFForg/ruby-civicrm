@@ -9,6 +9,7 @@ require 'nokogiri'
 require 'civicrm/client'
 require 'civicrm/xml'
 require 'civicrm/resource'
+require 'civicrm/profiling'
 require 'civicrm/version'
 
 # actions
@@ -26,6 +27,8 @@ require 'civicrm/resources/base'
 
 module CiviCrm
   Error = Class.new(Exception)
+
+  include Profiling
 
   @@api_key = nil
   @@site_key = nil

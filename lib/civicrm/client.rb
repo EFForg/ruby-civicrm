@@ -24,8 +24,14 @@ module CiviCrm
         else
           opts[:payload] = stringify_params(params)
         end
+
         opts[:url] = CiviCrm.api_url(path)
-        response = execute(opts)
+
+        response = nil
+
+        CiviCrm.time(params['entity'], params['action']) do
+          response = execute(opts)
+        end
 
         puts(JSON.dump(params)) if ENV["DEBUG_CIVICRM_REQUEST"]
         puts(response) if ENV["DEBUG_CIVICRM_RESPONSE"]
