@@ -14,7 +14,7 @@ module CiviCrm
         refresh_from(response.first.to_hash)
 
         @previously_changed = changes
-        @changed_attributes.clear
+        @changed_attributes.clear if @changed_attributes
 
         self
       end
