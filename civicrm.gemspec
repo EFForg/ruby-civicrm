@@ -13,7 +13,7 @@ spec = Gem::Specification.new do |s|
   s.executables = 'civicrm'
   s.require_paths = %w{lib}
 
-  s.add_dependency('rest-client', '~> 1.4')
+  s.add_dependency('rest-client', '~> 2.0')
   s.add_dependency('activesupport')
   s.add_dependency('activemodel')
   s.add_dependency('nokogiri')
