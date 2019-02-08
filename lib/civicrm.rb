@@ -34,7 +34,6 @@ module CiviCrm
   @@site_key = nil
   @@api_base = 'https://www.example.org/path/to/civi/codebase'
   @@api_version = 'v3'
-  @@user_authenticated = false
 
   mattr_accessor :api_key, :api_base, :api_version, :site_key
 
@@ -43,11 +42,6 @@ module CiviCrm
     base += "&api_key=#{@@api_key}" if @@api_key
     base += "&key=#{@@site_key}" if @@site_key
     base
-  end
-
-  def self.authenticate(name, password)
-    auth = Client.request(:post, q: 'civicrm/login', name: name, pass: password)
-    @@api_key = auth[0]['api_key']
   end
 
   def self.api_key=(key)

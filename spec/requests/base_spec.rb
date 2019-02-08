@@ -11,15 +11,6 @@ describe "API Bindings" do
     CiviCrm::Contact.new(id: "someid")
   end
 
-  it "should run authentication" do
-    expect(client).
-      to receive(:post).
-          exactly(:once).
-          and_return(test_response(api_key: 'test'))
-
-    CiviCrm.authenticate("test", "test")
-  end
-
   describe "exception handler" do
     let(:client){ CiviCrm::Client }
 

@@ -12,11 +12,6 @@ $ gem install civicrm
 # Required config
 CiviCrm.api_base = "https://www.example.org/path/to/civi/codebase/"
 CiviCrm.site_key = "YOUR_SITE_KEY"
-
-# Authenticate with username/password
-CiviCrm.authenticate("username", "password")
-
-# OR, authenticate with API key
 CiviCrm.api_key = "..."
 ```
 
