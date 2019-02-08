@@ -5,27 +5,32 @@ module CiviCrm
       # Returns parsed class inherited from CiviCrm::Resource
       def request(method, params = {})
         unless CiviCrm.site_key
-          raise CiviCrm::Errors::Unauthorized, "Please specify CiviCrm.site_key"
+          raise CiviCrm::Errors::Unauthorized,
+                "Please specify CiviCrm.site_key"
         end
+
         headers = {
           :user_agent => "CiviCrm RubyClient/#{CiviCrm::VERSION}"
         }
 
         opts = {
-          :method => method,
+          :method => :post,
           :timeout => 80,
           :headers => headers
         }
 
-        # build params
-        case method.to_s.downcase.to_sym
-        when :get, :head, :delete
-          path = params.count > 0 ? stringify_params(params) : ''
-        else
-          opts[:payload] = stringify_params(params)
-        end
+        params = params.dup
 
-        opts[:url] = CiviCrm.api_url(path)
+        entity = params.delete("entity")
+        raise ArgumentError, "params must include entity" unless entity
+
+        action = params.delete("action")
+        raise ArgumentError, "params must include action" unless action
+
+        method = { entity: entity, action: action }.to_query
+
+        opts[:payload] = "json=#{JSON.dump(params)}"
+        opts[:url] = CiviCrm.api_url(method)
 
         response = nil
 
@@ -33,16 +38,19 @@ module CiviCrm
           response = execute(opts)
         end
 
-        puts(JSON.dump(params)) if ENV["DEBUG_CIVICRM_REQUEST"]
+        puts(JSON.dump(opts)) if ENV["DEBUG_CIVICRM_REQUEST"]
         puts(response) if ENV["DEBUG_CIVICRM_RESPONSE"]
 
         body, code = response.body, response.code
 
-        CiviCrm::XML.parse(body).tap do |results|
-          Array(results).each do |res|
-            raise Error, res["error_message"] if res["is_error"] == "1"
-          end
+        parsed_response = JSON.parse(body)
+
+        if parsed_response["is_error"] == 1
+          raise Error, parsed_response["error_message"]
         end
+
+        values = parsed_response.fetch("values")
+        values.is_a?(Hash) ? values.values : values
       end
 
       def execute(opts)
@@ -62,23 +70,6 @@ module CiviCrm
         else
           raise e
         end
-      end
-
-      def uri_escape(key)
-        URI.escape(key.to_s, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
-      end
-
-      def flatten_params(params, parent_key = nil)
-        result = []
-        params.each do |key, value|
-          flatten_key = parent_key ? "#{parent_key}[#{uri_escape(key)}]" : uri_escape(key)
-          result += value.is_a?(Hash) ? flatten_params(value, flatten_key) : [[flatten_key, value]]
-        end
-        result
-      end
-
-      def stringify_params(params)
-        flatten_params(params).collect{|key, value| "#{key}=#{uri_escape(value)}"}.join('&')
       end
     end
   end

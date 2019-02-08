@@ -7,7 +7,6 @@ require 'nokogiri'
 
 # utils
 require 'civicrm/client'
-require 'civicrm/xml'
 require 'civicrm/resource'
 require 'civicrm/profiling'
 require 'civicrm/version'

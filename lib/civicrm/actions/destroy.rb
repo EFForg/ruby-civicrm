@@ -7,8 +7,12 @@ module CiviCrm
           'action' => 'delete',
           'id' => id
         }
+
         response = CiviCrm::Client.request(:post, params)
-        refresh_from(response.first.to_hash)
+
+        if response < 1
+          raise Error, "Couldn't delete #{entity_class_name}##{id}"
+        end
       end
 
       def delete!
@@ -18,8 +22,12 @@ module CiviCrm
           'skip_undelete' => 1,
           'id' => id
         }
+
         response = CiviCrm::Client.request(:post, params)
-        refresh_from(response.first.to_hash)
+
+        if response < 1
+          raise Error, "Couldn't delete #{entity_class_name}##{id}"
+        end
       end
     end
   end

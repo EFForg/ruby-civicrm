@@ -7,7 +7,7 @@ describe "API Bindings" do
   let(:client){ authorized_civicrm_client }
 
   it "should not fetch from network while initializing a new Resource" do
-    expect(client).not_to receive(:get)
+    expect(client).not_to receive(:post)
     CiviCrm::Contact.new(id: "someid")
   end
 

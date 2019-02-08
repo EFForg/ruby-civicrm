@@ -5,7 +5,7 @@ RSpec::Matchers.define :be_listable_resource do |expected|
     test_response_hash = send(:"test_#{subject.name.demodulize.underscore}_array")
 
     expect(client).
-      to receive(:get).
+      to receive(:post).
           exactly(:once).
           and_return(test_response(test_response_hash))
 
@@ -19,7 +19,7 @@ RSpec::Matchers.define :be_updatable_resource do |expected|
     subject = actual.class
 
     expect(client).
-      to receive(:get).
+      to receive(:post).
           exactly(:once).
           and_return(test_response(test_contact({name: "foo"})))
 
@@ -43,12 +43,12 @@ RSpec::Matchers.define :be_deleteable_resource do |expected|
     subject = actual.class
 
     expect(client).
-      to receive(:get).
+      to receive(:post).
           exactly(:once).
           and_return(test_response(test_contact({name: "foo"})))
 
     expect(client).
-      to receive(:delete).
+      to receive(:post).
           exactly(:once).
           and_return(test_response(test_contact({name: "bar"})))
 

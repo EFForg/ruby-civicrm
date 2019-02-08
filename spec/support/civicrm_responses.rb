@@ -1,6 +1,6 @@
  module CiviCrm::TestResponses
   def test_response(body, code = 200)
-    body = CiviCrm::XML.encode(body) if !(body.kind_of? String)
+    body = JSON.dump(is_error: 0, values: [body]) if !(body.kind_of? String)
     double(body: body, code: code)
   end
 
