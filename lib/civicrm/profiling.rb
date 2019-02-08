@@ -1,3 +1,5 @@
+require "benchmark"
+
 module CiviCrm
   module Profiling
     extend ActiveSupport::Concern

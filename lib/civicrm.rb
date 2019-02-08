@@ -1,3 +1,5 @@
+require 'json'
+
 require 'active_support/deprecation'
 require 'active_support/core_ext/module'
 require 'active_support/core_ext/hash'
