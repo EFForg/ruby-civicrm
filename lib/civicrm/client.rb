@@ -29,7 +29,7 @@ module CiviCrm
 
         method = { entity: entity, action: action }.to_query
 
-        opts[:payload] = "json=#{JSON.dump(params)}"
+        opts[:payload] = { json: JSON.dump(params) }
         opts[:url] = CiviCrm.api_url(method)
 
         response = nil
