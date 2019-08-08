@@ -44,6 +44,9 @@ module CiviCrm
   class ContributionRecur < BaseResource
     entity :contribution_recur
   end
+  class ContributionSoft < BaseResource
+    entity :contribution_soft
+  end
   class Country < BaseResource
     entity :country
   end
