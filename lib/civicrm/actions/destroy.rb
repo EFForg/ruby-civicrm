@@ -9,6 +9,7 @@ module CiviCrm
         }
 
         response = CiviCrm::Client.request(:post, params)
+        response = response.first if response.is_a?(Array)
 
         if response < 1
           raise Error, "Couldn't delete #{entity_class_name}##{id}"
@@ -24,6 +25,7 @@ module CiviCrm
         }
 
         response = CiviCrm::Client.request(:post, params)
+        response = response.first if response.is_a?(Array)
 
         if response < 1
           raise Error, "Couldn't delete #{entity_class_name}##{id}"
