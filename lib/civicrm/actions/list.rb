@@ -16,6 +16,10 @@ module CiviCrm
           all(params).first
         end
 
+        def find_by!(params={})
+          find_by(params) or raise Errors::NotFound.new
+        end
+
         def first
           all.first
         end
