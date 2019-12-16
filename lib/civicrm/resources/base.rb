@@ -131,6 +131,9 @@ module CiviCrm
   class Note < BaseResource
     entity :note
   end
+  class OptionGroup < BaseResource
+    entity :option_group
+  end
   class Phone < BaseResource
     entity :phone
   end
@@ -153,3 +156,6 @@ module CiviCrm
     entity :survey_respondant
   end
 end
+
+require "civicrm/resources/financial_type"
+require "civicrm/resources/option_value"
