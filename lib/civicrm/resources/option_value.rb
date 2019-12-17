@@ -4,7 +4,7 @@ module CiviCrm
 
     @@_option_value_cache = {}
 
-    def self.get(group, name, cache: true, create: Rails.env.development?)
+    def self.[](group, name, cache: true, create: Rails.env.development?)
       cache_key = [group, name]
 
       if cache && @@_option_value_cache.key?(cache_key)
@@ -12,8 +12,8 @@ module CiviCrm
       end
 
       option = find_by(
-        'name' => name,
-        'option_group_id.title' => group
+        "name" => name,
+        "option_group_id.title" => group
       )
 
       if !option && create

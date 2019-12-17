@@ -4,7 +4,7 @@ module CiviCrm
 
     @@_financial_type_cache = {}
 
-    def self.get(name, cache: true, create: Rails.env.development?)
+    def self.[](name, cache: true, create: Rails.env.development?)
       cache_key = name
 
       if cache && @@_financial_type_cache.key?(cache_key)
