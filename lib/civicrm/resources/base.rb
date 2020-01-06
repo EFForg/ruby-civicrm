@@ -50,9 +50,6 @@ module CiviCrm
   class Country < BaseResource
     entity :country
   end
-  class CustomField < BaseResource
-    entity :custom_field
-  end
   class CustomGroup < BaseResource
     entity :custom_group
   end
@@ -157,5 +154,6 @@ module CiviCrm
   end
 end
 
+require "civicrm/resources/custom_field"
 require "civicrm/resources/financial_type"
 require "civicrm/resources/option_value"
