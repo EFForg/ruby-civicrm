@@ -140,6 +140,9 @@ module CiviCrm
   class Relationship < BaseResource
     entity :relationship
   end
+  class RelationshipType < BaseResource
+    entity :relationship_type
+  end
   class Setting < BaseResource
     entity :setting
   end
