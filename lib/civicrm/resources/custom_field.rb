@@ -5,7 +5,7 @@ module CiviCrm
     @@_custom_field_cache = {}
 
     def self.[](entity, field, cache: true)
-      cache_key = name
+      cache_key = [entity.underscore, field].join("/")
 
       if cache && @@_custom_field_cache.key?(cache_key)
         return @@_custom_field_cache[cache_key]
@@ -24,7 +24,7 @@ module CiviCrm
       end
 
       raise Errors::NotFound.new(
-        "CustomField of #{entity} with name=#{name}"
+        "CustomField of #{entity} with name=#{field}"
       )
     end
 
