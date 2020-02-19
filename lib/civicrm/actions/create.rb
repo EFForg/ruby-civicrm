@@ -6,11 +6,13 @@ module CiviCrm
           params = {'entity' => entity_class_name, 'action' => 'create'}
           response = CiviCrm::Client.request(:post, params.merge(attrs))
 
-          if response.first.nil?
+          if response == 1
+            Resource.build_from(attrs, params)
+          elsif response.first.nil?
             raise Error, "Couldn't create #{entity_class_name}"
+          else
+            Resource.build_from(response.first, params)
           end
-
-          Resource.build_from(response.first, params)
         end
       end
 
