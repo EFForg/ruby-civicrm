@@ -34,11 +34,12 @@ module CiviCrm
 
         response = nil
 
+        puts(JSON.dump(opts)) if ENV["DEBUG_CIVICRM_REQUEST"]
+
         CiviCrm.time(params['entity'], params['action']) do
           response = execute(opts)
         end
 
-        puts(JSON.dump(opts)) if ENV["DEBUG_CIVICRM_REQUEST"]
         puts(response) if ENV["DEBUG_CIVICRM_RESPONSE"]
 
         body, code = response.body, response.code
