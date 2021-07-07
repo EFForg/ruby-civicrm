@@ -12,6 +12,7 @@ spec = Gem::Specification.new do |s|
   s.homepage = 'http://civicrm.org'
   s.executables = 'civicrm'
   s.require_paths = %w{lib}
+  s.required_ruby_version = '>= 2.0'
 
   s.add_dependency('rest-client', '~> 2.0')
   s.add_dependency('activesupport')
