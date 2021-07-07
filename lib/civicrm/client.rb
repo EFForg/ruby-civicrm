@@ -15,7 +15,7 @@ module CiviCrm
 
         opts = {
           :method => :post,
-          :timeout => 80,
+          :timeout => CiviCrm.timeout,
           :headers => headers
         }
 
