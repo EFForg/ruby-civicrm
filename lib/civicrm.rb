@@ -35,8 +35,9 @@ module CiviCrm
   @@site_key = nil
   @@api_base = 'https://www.example.org/path/to/civi/codebase'
   @@api_version = 'v3'
+  @@timeout = 80
 
-  mattr_accessor :api_key, :api_base, :api_version, :site_key
+  mattr_accessor :api_key, :api_base, :api_version, :site_key, :timeout
 
   def self.api_url(path = '')
     base = "#{api_base}/civicrm/extern/rest.php?#{path}"
