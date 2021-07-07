@@ -10,7 +10,8 @@ module CiviCrm
         end
 
         headers = {
-          :user_agent => "CiviCrm RubyClient/#{CiviCrm::VERSION}"
+          :user_agent => "CiviCrm RubyClient/#{CiviCrm::VERSION}",
+          :request_id => SecureRandom.uuid
         }
 
         opts = {
@@ -34,12 +35,13 @@ module CiviCrm
 
         response = nil
 
+        puts("[CiviCRM] [REQ] [#{entity}] [#{action}] #{JSON.dump(opts)}") if ENV["DEBUG_CIVICRM_REQUEST"]
+
         CiviCrm.time(params['entity'], params['action']) do
           response = execute(opts)
         end
 
-        puts(JSON.dump(opts)) if ENV["DEBUG_CIVICRM_REQUEST"]
-        puts(response) if ENV["DEBUG_CIVICRM_RESPONSE"]
+        puts("[CiviCRM] [RES] [#{entity}] [#{action}] #{response}") if ENV["DEBUG_CIVICRM_RESPONSE"]
 
         body, code = response.body, response.code
 
