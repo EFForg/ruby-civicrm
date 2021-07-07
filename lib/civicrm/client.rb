@@ -10,7 +10,8 @@ module CiviCrm
         end
 
         headers = {
-          :user_agent => "CiviCrm RubyClient/#{CiviCrm::VERSION}"
+          :user_agent => "CiviCrm RubyClient/#{CiviCrm::VERSION}",
+          :request_id => SecureRandom.uuid
         }
 
         opts = {
